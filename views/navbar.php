@@ -46,8 +46,7 @@ $user = $session->getUser();
           Reservas
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?= url('cad_reserva.php') ?>">Cadastro</a>
-          <a class="dropdown-item" href="<?= url('lista_reserva.php') ?>">Lista</a>
+          <a class="dropdown-item" href="<?= url('reservas.php') ?>">Cadastro</a>
         </div>
       </li>
       <li class="nav-item">
