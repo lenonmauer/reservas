@@ -1,5 +1,4 @@
 <?php
-require __DIR__.'/config.php';
 require __DIR__.'/core/helpers.php';
 ?>
 
