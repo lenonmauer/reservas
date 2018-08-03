@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__.' /../core/user-session.php';
+require_once __DIR__.' /../core/session.php';
 
-$session = new UserSession();
+$session = new Session();
 $userIsLogged = $session->userIsLogged();
 $user = $session->getUser();
 ?>
