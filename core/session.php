@@ -1,12 +1,14 @@
 <?php
 session_start();
 
-class UserSession {
+require_once __DIR__.'./helpers.php';
+
+class Session {
   private $sessionKey = 'user';
 
   function checkUserLogged() {
     if (!$this->userIsLogged()) {
-      $this->redirectToLoginPage();
+      redirect('login.php');
     }
   }
 
@@ -24,10 +26,5 @@ class UserSession {
 
   function userIsLogged() {
     return isset($_SESSION[$this->sessionKey]) && !empty($_SESSION[$this->sessionKey]['id']);
-   }
-
-  private function redirectToLoginPage() {
-    header('Location: login.php');
-    die();
   }
 }
