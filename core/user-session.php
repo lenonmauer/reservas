@@ -22,7 +22,7 @@ class UserSession {
     unset($_SESSION[$this->sessionKey]);
   }
 
-  private function userIsLogged() {
+  function userIsLogged() {
     return isset($_SESSION[$this->sessionKey]) && !empty($_SESSION[$this->sessionKey]['id']);
    }
 
