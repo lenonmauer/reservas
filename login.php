@@ -42,6 +42,8 @@ require __DIR__.'/core/helpers.php';
 
   <script src="<?= assets('vendor/js/jquery.min.js') ?>"></script>
   <script src="<?= assets('vendor/js/bootstrap.min.js') ?>"></script>
+  <script src="<?= assets('vendor/js/ztoast.min.js') ?>"></script>
+  <script src="<?= assets('js/login.js') ?>"></script>
 </body>
 
 </html>
