@@ -24,12 +24,12 @@ require __DIR__.'/core/helpers.php';
         <form action="api/login.php" method="POST">
           <div class="form-group">
             <label>Login</label>
-            <input class="form-control" type="text" name="login" placeholder="Informe o seu login...">
+            <input class="form-control" type="text" name="login" placeholder="Informe o seu login..." required>
           </div>
 
           <div class="form-group">
             <label>Senha</label>
-            <input class="form-control" type="password" name="senha" placeholder="Informe a sua senha...">
+            <input class="form-control" type="password" name="senha" placeholder="Informe a sua senha..." required>
           </div>
 
           <div>
