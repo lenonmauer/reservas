@@ -3,7 +3,7 @@ require_once __DIR__.' /../core/session.php';
 
 $session = new Session();
 $userIsLogged = $session->userIsLogged();
-$user = $session->getUser();
+$loggedUser = $session->getUser();
 ?>
 
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -11,7 +11,7 @@ $user = $session->getUser();
   <?php
     if ($userIsLogged) { ?>
       <span class="navbar-text">
-        Logado como: <?= $user['nome_exibicao'] ?>
+        Logado como: <?= $loggedUser['nome_exibicao'] ?>
       </span>
   <?php
     } ?>
