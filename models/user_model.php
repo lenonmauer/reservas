@@ -34,6 +34,19 @@ class UserModel {
     return $result;
   }
 
+  function removeUser($removeUserId) {
+    $sql = 'DELETE FROM usuarios WHERE id=?';
+    $bindParams = [
+      'i', $removeUserId,
+    ];
+
+    $this->database->connect();
+    $result = $this->database->delete($sql, $bindParams);
+    $this->database->close();
+
+    return $result;
+  }
+
   function loginUser($login, $senhaMD5) {
     $sql = 'SELECT * FROM usuarios WHERE login = ? and senha = ?';
     $bindParams = [
@@ -81,5 +94,16 @@ class UserModel {
     $this->database->close();
 
     return count($result) ? $result[0] : null;
+  }
+
+
+  function getUsers() {
+    $sql = 'SELECT * FROM usuarios';
+
+    $this->database->connect();
+    $result = $this->database->select($sql);
+    $this->database->close();
+
+    return $result;
   }
 }
