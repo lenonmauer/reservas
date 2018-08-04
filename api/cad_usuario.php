@@ -3,6 +3,8 @@ require_once __DIR__.'/../core/helpers.php';
 require_once __DIR__.'/../core/response.php';
 require_once __DIR__.'/../models/user_model.php';
 
+$model = new UserModel();
+
 $nome_exibicao = @$_POST['nome_exibicao'];
 $login = @$_POST['login'];
 $senha = @$_POST['senha'];
@@ -17,13 +19,11 @@ else if (empty($senha)) {
   Response::badRequest('Informe a sua senha.');
 }
 
-$senhaMD5 = md5($senha);
-
-$model = new UserModel();
-
 if ($model->loginExists($login)) {
   Response::badRequest('Este login já existe. Informe outro login.');
 }
+
+$senhaMD5 = md5($senha);
 
 if ($model->createUser($login, $senhaMD5, $nome_exibicao)) {
   Response::success('Usuario criado com sucesso', ['redirectUrl' => 'lista_usuario.php']);
