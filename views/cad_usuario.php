@@ -21,26 +21,33 @@ require_once __DIR__.'/../core/helpers.php';
   <div class="container justify-content-center">
     <div id="card-cadastro" class="card">
       <div class="card-body">
-        <h5 class="card-title">Cadastrar Usuário</h5>
+        <?php
+          if ($hasUserToUpdate) { ?>
+            <h5 class="card-title">Editar Usuário - <?= $user['nome_exibicao'] ?></h5>
+        <?php
+          } else { ?>
+            <h5 class="card-title">Cadastrar Usuário</h5>
+        <?php
+          } ?>
 
-        <form action="api/cad_usuario.php" method="POST" autocomplete="off">
+        <form action="<?=$urlFormulario?>" method="POST" autocomplete="off">
           <div class="form-group">
             <label>Nome de Exibição</label>
-            <input class="form-control" type="text" name="nome_exibicao" placeholder="Informe o nome de exibição..." required>
+            <input class="form-control" type="text" name="nome_exibicao" placeholder="Informe o nome de exibição..." value="<?=$hasUserToUpdate ? $user['nome_exibicao'] : ''?>" required>
           </div>
 
           <div class="form-group">
             <label>Login</label>
-            <input class="form-control" type="text" name="login" placeholder="Informe o login..." required>
+            <input class="form-control" type="text" name="login" placeholder="Informe o login..." value="<?=$hasUserToUpdate ? $user['login'] : ''?>" required>
           </div>
 
           <div class="form-group">
             <label>Senha</label>
-            <input class="form-control" type="password" name="senha" placeholder="Informe a senha..." required>
+            <input class="form-control" type="password" name="senha" placeholder="Informe a senha..." value="" required>
           </div>
 
           <div>
-            <button class="btn btn-primary btn-block">Cadastrar</button>
+            <button class="btn btn-primary btn-block"><?=$hasUserToUpdate ? 'Editar' : 'Cadastrar'?></button>
           </div>
         </form>
       </div>

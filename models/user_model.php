@@ -21,6 +21,19 @@ class UserModel {
     return $result > 0;
   }
 
+  function updateUser($updateUserId, $login, $senhaMD5, $nome_exibicao) {
+    $sql = 'UPDATE usuarios SET login=?, senha=?, nome_exibicao=? WHERE id=?';
+    $bindParams = [
+      'sssi', $login, $senhaMD5, $nome_exibicao, $updateUserId,
+    ];
+
+    $this->database->connect();
+    $result = $this->database->update($sql, $bindParams);
+    $this->database->close();
+
+    return $result;
+  }
+
   function loginUser($login, $senhaMD5) {
     $sql = 'SELECT * FROM usuarios WHERE login = ? and senha = ?';
     $bindParams = [
@@ -34,16 +47,39 @@ class UserModel {
     return count($result) ? $result[0] : false;
   }
 
-  function loginExists($login) {
+  function loginExists($login, $ignoreUserId = null) {
     $sql = 'SELECT COUNT(*) FROM usuarios WHERE login = ?';
-    $bindParams = [
-      's', $login,
-    ];
+
+    if ($ignoreUserId !== null) {
+      $sql.= ' AND id <> ?';
+
+      $bindParams = [
+        'si', $login, $ignoreUserId,
+      ];
+    }
+    else {
+      $bindParams = [
+        's', $login,
+      ];
+    }
 
     $this->database->connect();
     $result = $this->database->count($sql, $bindParams);
     $this->database->close();
 
     return $result >= 1;
+  }
+
+  function getUserById($id) {
+    $sql = 'SELECT * FROM usuarios WHERE id = ?';
+    $bindParams = [
+      'i', $id,
+    ];
+
+    $this->database->connect();
+    $result = $this->database->select($sql, $bindParams);
+    $this->database->close();
+
+    return count($result) ? $result[0] : null;
   }
 }
