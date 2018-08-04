@@ -1,1 +1,2 @@
-cad_usuarios
+<?php
+require __DIR__.'/views/cad_usuario.php';
