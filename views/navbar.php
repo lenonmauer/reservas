@@ -53,7 +53,13 @@ $user = $session->getUser();
         <a class="nav-link" href="<?= url('logout.php') ?>">Deslogar</a>
       </li>
     <?php
+      } else { ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= url('login.php') ?>">Logar</a>
+        </li>
+        <?php
       } ?>
+
     </ul>
   </div>
 </nav>
