@@ -41,13 +41,8 @@ $loggedUser = $session->getUser();
       </li>
     <?php
     if ($userIsLogged) { ?>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Reservas
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?= url('reservas.php') ?>">Cadastro</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= url('reservas.php') ?>">Reservas</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= url('logout.php') ?>">Deslogar</a>
@@ -55,7 +50,7 @@ $loggedUser = $session->getUser();
     <?php
       } else { ?>
         <li class="nav-item">
-          <a class="nav-link" href="<?= url('login.php') ?>">Logar</a>
+          <a class="nav-link" href="<?= url('login.php') ?>">Login</a>
         </li>
         <?php
       } ?>
