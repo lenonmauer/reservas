@@ -125,7 +125,7 @@ class Database
     }
   }
 
-  public function delete($sql)
+  public function delete($sql, $bindParams)
   {
     if (!$this->connection) {
       throw new Exception('Sem conexão com o banco de dados para fazer o delete');
