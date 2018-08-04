@@ -34,6 +34,19 @@ class SalaModel {
     return $result;
   }
 
+  function removeSala($removeSalaId) {
+    $sql = 'DELETE FROM salas WHERE id=?';
+    $bindParams = [
+      'i', $removeSalaId,
+    ];
+
+    $this->database->connect();
+    $result = $this->database->delete($sql, $bindParams);
+    $this->database->close();
+
+    return $result;
+  }
+
   function salaExists($descricao, $ignoreSalaId = null) {
     $sql = 'SELECT COUNT(*) FROM salas WHERE descricao = ?';
 
@@ -68,5 +81,15 @@ class SalaModel {
     $this->database->close();
 
     return count($result) ? $result[0] : null;
+  }
+
+  function getSalas() {
+    $sql = 'SELECT * FROM salas';
+
+    $this->database->connect();
+    $result = $this->database->select($sql);
+    $this->database->close();
+
+    return $result;
   }
 }
