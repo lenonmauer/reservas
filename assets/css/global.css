@@ -1,3 +1,9 @@
 .navbar {
   margin-bottom: 20px;
 }
+
+.btn-xs {
+  padding: .14rem .3rem;
+  font-size: .75rem;
+  border-radius: .4rem;
+}
