@@ -19,9 +19,9 @@ require_once __DIR__.'/../core/helpers.php';
   <?php require __DIR__.'/navbar.php'; ?>
 
   <div class="container justify-content-center">
-    <div id="card-login" class="card">
+    <div class="card">
       <div class="card-body">
-        <form action="api/login.php" method="POST">
+        <form action="api/login.php" method="POST" autocomplete="off">
           <div class="form-group">
             <label>Login</label>
             <input class="form-control" type="text" name="login" placeholder="Informe o seu login..." required>
