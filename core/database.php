@@ -24,17 +24,19 @@ class Database
 
     $query = $this->connection->prepare($sql);
 
-    if (!empty($bindParams)) {
-      call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+    if ($query) {
+      if (!empty($bindParams)) {
+        call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+      }
+
+      if ($query->execute()) {
+        return $this->connection->insert_id;
+      }
+      else {
+        throw new Exception($this->connection->error);
+      }
     }
-
-    $query->execute();
-
-    $result = $query->get_result();
-
-    if ($result) {
-      return $this->connection->insert_id;
-    } else {
+    else {
       throw new Exception($this->connection->error);
     }
   }
@@ -45,27 +47,30 @@ class Database
       throw new Exception('Sem conexão com o banco de dados para fazer o select');
     }
 
-    $data = [];
-
     $query = $this->connection->prepare($sql);
 
-    if (!empty($bindParams)) {
-      call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+    if ($query) {
+      if (!empty($bindParams)) {
+        call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+      }
+
+      if ($query->execute()) {
+        $data = [];
+        $result = $query->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+          $data[] = $row;
+        }
+
+        return $data;
+      }
+      else {
+        throw new Exception($this->connection->error);
+      }
     }
-
-    $query->execute();
-
-    $result = $query->get_result();
-
-    if (!$result) {
+    else {
       throw new Exception($this->connection->error);
     }
-
-    while ($row = $result->fetch_assoc()) {
-      $data[] = $row;
-    }
-
-    return $data;
   }
 
   public function count($sql, $bindParams = [])
@@ -74,28 +79,28 @@ class Database
       throw new Exception('Sem conexão com o banco de dados para fazer o select');
     }
 
-    $data = [];
-
     $query = $this->connection->prepare($sql);
 
-    if (!empty($bindParams)) {
-      call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
-    }
+    if ($query) {
+      if (!empty($bindParams)) {
+        call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+      }
 
-    $query->execute();
-
-    $result = $query->get_result();
-
-    if ($result) {
-      $row = $result->fetch_row();
-      return intval($row[0]);
+      if ($query->execute()) {
+        $result = $query->get_result();
+        $rowsCount = $result->fetch_row();
+        return intval($rowsCount[0]);
+      }
+      else {
+        throw new Exception($this->connection->error);
+      }
     }
     else {
       throw new Exception($this->connection->error);
     }
   }
 
-  public function update($sql)
+  public function update($sql, $bindParams = [])
   {
     if (!$this->connection) {
       throw new Exception('Sem conexão com o banco de dados para fazer o update');
@@ -103,15 +108,19 @@ class Database
 
     $query = $this->connection->prepare($sql);
 
-    if (!empty($bindParams)) {
-      call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+    if ($query) {
+      if (!empty($bindParams)) {
+        call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+      }
+
+      if ($query->execute()) {
+        return true;
+      }
+      else {
+        throw new Exception($this->connection->error);
+      }
     }
-
-    $query->execute();
-
-    if ($query->get_result()) {
-      return true;
-    } else {
+    else {
       throw new Exception($this->connection->error);
     }
   }
@@ -123,15 +132,19 @@ class Database
     }
     $query = $this->connection->prepare($sql);
 
-    if (!empty($bindParams)) {
-      call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+    if ($query) {
+      if (!empty($bindParams)) {
+        call_user_func_array(array($query, 'bind_param'), $this->refValues($bindParams));
+      }
+
+      if ($query->execute()) {
+        return true;
+      }
+      else {
+        throw new Exception($this->connection->error);
+      }
     }
-
-    $query->execute();
-
-    if ($query->get_result()) {
-      return true;
-    } else {
+    else {
       throw new Exception($this->connection->error);
     }
   }
