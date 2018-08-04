@@ -19,7 +19,7 @@ require_once __DIR__.'/../core/helpers.php';
   <?php require __DIR__.'/navbar.php'; ?>
 
   <div class="container justify-content-center">
-    <div id="card-cadastro" class="card">
+    <div class="card">
       <div class="card-body">
         <?php
           if ($hasSalaToUpdate) { ?>
