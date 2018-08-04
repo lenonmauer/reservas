@@ -21,16 +21,25 @@ require_once __DIR__.'/../core/helpers.php';
   <div class="container justify-content-center">
     <div id="card-cadastro" class="card">
       <div class="card-body">
-        <h5 class="card-title">Cadastrar Sala</h5>
+        <?php
+          if ($hasSalaToUpdate) { ?>
+            <h5 class="card-title">Editar Sala</h5>
+            <span>Usuário Atual: <?= $sala['descricao'] ?></span>
+            <br><br>
+        <?php
+          } else { ?>
+            <h5 class="card-title">Cadastrar Sala</h5>
+        <?php
+          } ?>
 
-        <form action="api/cad_sala.php" method="POST" autocomplete="off">
+        <form action="<?=$urlFormulario?>" method="POST" autocomplete="off">
           <div class="form-group">
             <label>Descrição da Sala</label>
-            <input class="form-control" type="text" name="descricao" placeholder="Informe a descrição da sala..." required>
+            <input class="form-control" type="text" name="descricao" placeholder="Informe a descrição da sala..." value="<?=$hasSalaToUpdate ? $sala['descricao'] : ''?>" required>
           </div>
 
           <div>
-            <button class="btn btn-primary btn-block">Cadastrar</button>
+            <button class="btn btn-primary btn-block"><?=$hasSalaToUpdate ? 'Editar' : 'Cadastrar'?></button>
           </div>
         </form>
       </div>
