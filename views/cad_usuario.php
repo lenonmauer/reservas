@@ -23,7 +23,9 @@ require_once __DIR__.'/../core/helpers.php';
       <div class="card-body">
         <?php
           if ($hasUserToUpdate) { ?>
-            <h5 class="card-title">Editar Usuário - <?= $user['nome_exibicao'] ?></h5>
+            <h5 class="card-title">Editar Usuário</h5>
+            <span>Usuário Atual: <?= $user['nome_exibicao'] ?></span>
+            <br><br>
         <?php
           } else { ?>
             <h5 class="card-title">Cadastrar Usuário</h5>
