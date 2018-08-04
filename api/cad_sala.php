@@ -12,11 +12,11 @@ if (empty($descricao)) {
 $model = new SalaModel();
 
 if ($model->salaExists($descricao)) {
-  Response::badRequest('Já existe uma sala com essa descrição. Informe outra.');
+  Response::badRequest('Esta sala já existe. Informe outra descrição.');
 }
 
 if ($model->createSala($descricao)) {
-  Response::success('Sala criada com sucesso', ['redirectUrl' => 'lista_sala.php']);
+  Response::success('Sala criada com sucesso.', ['redirectUrl' => 'lista_sala.php']);
 }
 else {
   Response::badRequest('Ocorreu um erro ao tentar criar a sala.');

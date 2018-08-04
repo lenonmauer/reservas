@@ -8,11 +8,11 @@ $idRemove = @$_GET['id'];
 $usuarioNaoExiste = empty($idRemove) || $model->getUserById($idRemove) === null;
 
 if ($usuarioNaoExiste) {
-  Response::badRequest('Usuário da edição não encontrado.');
+  Response::badRequest('Usuário não encontrado.');
 }
 
 if ($model->removeUser($idRemove)) {
-  Response::success('Usuario removido com sucesso');
+  Response::success('Usuario removido com sucesso.');
 }
 else {
   Response::badRequest('Ocorreu um ao tentar remover o usuário.');

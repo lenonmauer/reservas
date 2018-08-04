@@ -26,7 +26,7 @@ if ($model->loginExists($login)) {
 $senhaMD5 = md5($senha);
 
 if ($model->createUser($login, $senhaMD5, $nome_exibicao)) {
-  Response::success('Usuario criado com sucesso', ['redirectUrl' => 'lista_usuario.php']);
+  Response::success('Usuario criado com sucesso.', ['redirectUrl' => 'lista_usuario.php']);
 }
 else {
   Response::badRequest('Ocorreu um ao tentar criar o usuário.');

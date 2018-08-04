@@ -32,7 +32,7 @@ if ($model->loginExists($login, $idUpdate)) {
 $senhaMD5 = md5($senha);
 
 if ($model->updateUser($idUpdate, $login, $senhaMD5, $nome_exibicao)) {
-  Response::success('Usuario alterado com sucesso', ['redirectUrl' => 'lista_usuario.php']);
+  Response::success('Usuario alterado com sucesso.', ['redirectUrl' => 'lista_usuario.php']);
 }
 else {
   Response::badRequest('Ocorreu um ao tentar alterar o usuário.');
