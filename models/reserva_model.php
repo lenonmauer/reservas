@@ -8,6 +8,7 @@ class ReservaModel {
     $this->database = new Database();
   }
 
+  /* Cria uma nova reserva */
   function createReserva($userId, $salaId, $dataHorarioReserva) {
     $sql = 'INSERT INTO reservas (usuario_id, sala_id, data_inicio) VALUES (?, ?, ?)';
     $bindParams = [
@@ -21,6 +22,7 @@ class ReservaModel {
     return $result > 0;
   }
 
+  /* Retorna todas as reservas em um array */
   function getReservas($sala_id, $date) {
     $sql = 'SELECT r.*, u.nome_exibicao as usuario_nome
       FROM reservas as r
@@ -39,6 +41,7 @@ class ReservaModel {
     return $result;
   }
 
+  /* Verifica se o usuário não possui reservas em uma determinada data */
   function isUserDisponivelOnDate($userId, $dataHorarioReserva) {
     $sql = 'SELECT COUNT(*) FROM reservas WHERE usuario_id = ? AND data_inicio = ?';
 
@@ -53,6 +56,7 @@ class ReservaModel {
     return $result == 0;
   }
 
+  /* Verifica se a sala não está reservada em uma determinada data */
   function isSalaDisponivelOnDate($salaId, $dataHorarioReserva) {
     $sql = 'SELECT COUNT(*) FROM reservas WHERE sala_id = ? AND data_inicio = ?';
 
@@ -67,6 +71,7 @@ class ReservaModel {
     return $result == 0;
   }
 
+  /* Verifica se o usuário é proprietário da reserva */
   function isUserProprietarioReserva($reservaId, $userId) {
     $sql = 'SELECT COUNT(*) FROM reservas WHERE id = ? AND usuario_id = ?';
     $bindParams = [
@@ -80,6 +85,7 @@ class ReservaModel {
     return $result == 1;
   }
 
+  /* Remove uma reserva */
   function removeReserva($reservaId) {
     $sql = 'DELETE FROM reservas WHERE id=?';
     $bindParams = [

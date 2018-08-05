@@ -8,6 +8,7 @@ class SalaModel {
     $this->database = new Database();
   }
 
+  /* Cria uma nova sala */
   function createSala($descricao) {
     $sql = 'INSERT INTO salas (descricao) VALUES (?)';
     $bindParams = [
@@ -21,6 +22,7 @@ class SalaModel {
     return $result > 0;
   }
 
+  /* Altera uma sala */
   function updateSala($updateSalaId, $descricao) {
     $sql = 'UPDATE salas SET descricao=? WHERE id=?';
     $bindParams = [
@@ -34,6 +36,7 @@ class SalaModel {
     return $result;
   }
 
+  /* Remove uma sala */
   function removeSala($removeSalaId) {
     $sql = 'DELETE FROM salas WHERE id=?';
     $bindParams = [
@@ -47,6 +50,7 @@ class SalaModel {
     return $result;
   }
 
+  /* Verifica se a sala existe, utilizando a descrição como referencia */
   function salaExists($descricao, $ignoreSalaId = null) {
     $sql = 'SELECT COUNT(*) FROM salas WHERE descricao = ?';
 
@@ -70,6 +74,7 @@ class SalaModel {
     return $result >= 1;
   }
 
+  /* Retorna a sala de um determinado id */
   function getSalaById($id) {
     $sql = 'SELECT * FROM salas WHERE id = ?';
     $bindParams = [
@@ -83,6 +88,7 @@ class SalaModel {
     return count($result) ? $result[0] : null;
   }
 
+  /* Retorna todas as salas */
   function getSalas() {
     $sql = 'SELECT * FROM salas';
 
