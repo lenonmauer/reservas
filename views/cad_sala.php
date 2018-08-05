@@ -24,7 +24,7 @@ require_once __DIR__.'/../core/helpers.php';
         <?php
           if ($hasSalaToUpdate) { ?>
             <h5 class="card-title">Editar Sala</h5>
-            <span>Usuário Atual: <?= $sala['descricao'] ?></span>
+            <span>Sala Atual: <?= $sala['descricao'] ?></span>
             <br><br>
         <?php
           } else { ?>
