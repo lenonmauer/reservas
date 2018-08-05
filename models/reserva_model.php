@@ -68,7 +68,16 @@ class ReservaModel {
   }
 
   function isUserProprietarioReserva($reservaId, $userId) {
-    return true;
+    $sql = 'SELECT COUNT(*) FROM reservas WHERE id = ? AND usuario_id = ?';
+    $bindParams = [
+      'ii', $reservaId, $userId,
+    ];
+
+    $this->database->connect();
+    $result = $this->database->count($sql, $bindParams);
+    $this->database->close();
+
+    return $result == 1;
   }
 
   function removeReserva($reservaId) {
