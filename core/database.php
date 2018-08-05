@@ -5,6 +5,7 @@ class Database
 {
   private $connection;
 
+  /* Conecta no banco de dados */
   public function connect()
   {
     $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -16,6 +17,7 @@ class Database
     }
   }
 
+  /* Executa uma query de insert e retorna o id do item inserido no banco. */
   public function insert($sql, $bindParams = [])
   {
     if (!$this->connection) {
@@ -41,6 +43,7 @@ class Database
     }
   }
 
+  /* Executa uma query de select no banco e retorna um array com os resultados. */
   public function select($sql, $bindParams = [])
   {
     if (!$this->connection) {
@@ -73,6 +76,7 @@ class Database
     }
   }
 
+  /* Executa uma query de count no banco e retorna um inteiro como resultado. */
   public function count($sql, $bindParams = [])
   {
     if (!$this->connection) {
@@ -100,6 +104,7 @@ class Database
     }
   }
 
+   /* Executa uma query de update no banco. Retorna TRUE em caso de sucesso. */
   public function update($sql, $bindParams = [])
   {
     if (!$this->connection) {
@@ -125,6 +130,7 @@ class Database
     }
   }
 
+  /* Executa uma query de delete no banco. Retorna TRUE em caso de sucesso. */
   public function delete($sql, $bindParams)
   {
     if (!$this->connection) {
@@ -149,6 +155,7 @@ class Database
     }
   }
 
+  /* Fecha a conexão atual com o banco de dados */
   public function close()
   {
     if ($this->connection) {
@@ -156,6 +163,7 @@ class Database
     }
   }
 
+  /* Retorna o próprio array com os valores passados comoo referencia. */
   private function refValues($arr)
   {
     $refs = array();
